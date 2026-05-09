@@ -2,9 +2,9 @@
 
 --[[
    eg, USAGE:
-        local ModernUI = require(game.ReplicatedStorage.ModernUI)
+        local NexUI = require(game.ReplicatedStorage.NexUI)
 
-        local Window = ModernUI.new({
+        local Window = NexUI.new({
             Title = "My App",
             Icon  = "⚙",
             Size  = UDim2.new(0, 620, 0, 460)
@@ -793,7 +793,7 @@ function Window.new(config)
 	local H=config.Size and config.Size.Y.Offset or 460
 	local sg=GetSG()
 	local self=setmetatable({_W=W,_H=H,_pages={},_activePage=nil,_minimized=false,
-		_title=config.Title or "Modern UI",_icon=config.Icon or "",_taskbarBtn=nil,_activeTheme="Dark"},Window)
+		_title=config.Title or "Nex UI",_icon=config.Icon or "",_taskbarBtn=nil,_activeTheme="Dark"},Window)
 
 	local root=New("Frame",{Position=UDim2.fromOffset(sg.AbsoluteSize.X/2-W/2,sg.AbsoluteSize.Y/2-H/2),
 		Size=UDim2.new(0,W,0,H),BackgroundColor3=C.BG,ZIndex=2,ClipsDescendants=true,Parent=sg})
@@ -873,7 +873,7 @@ end
 -- ── ApplyTheme ──────────────────────────────────────────────────────────────
 function Window:ApplyTheme(name)
 	local theme=THEMES[name]
-	if not theme then warn("ModernUI: unknown theme '"..tostring(name).."'") return end
+	if not theme then warn("NexUI: unknown theme '"..tostring(name).."'") return end
 	self._activeTheme=name
 	for key,col in pairs(theme.palette) do C[key]=col end
 	local dead={}
@@ -1116,4 +1116,4 @@ function Window:Destroy()
 end
 
 -- ───────────────────────────────────────────────────────────────────────────
-return { Name = "Nex UI", new = function(cfg) return Window.new(cfg) end }
+return { Name="Nex UI", new=function(cfg) return Window.new(cfg) end }
