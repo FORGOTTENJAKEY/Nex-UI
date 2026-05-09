@@ -15,13 +15,13 @@ return function(v)
 		local s,f=pcall(function()return loadstring(game:HttpGet(fi))()end);
 		if not s and v ~= lat then s,f = pcall(function()return loadstring(game:HttpGet(map:format(`v{tostring(lat):gsub("%.", "_")}`)))()end) end;
 		if not s then
-			warn(`[NexUI: Bootstrapped]: Failed to fetch, please retry again..`)
+			warn(`[NexUI: Bootstrapper]: Failed to fetch, please retry again..`)
 			return nil
 		end
 		if s then return f end; return nil
 	end)
 	if not s then
-		warn(`[NexUI: Bootstrapped]: Internal issue occurred. (r)`)
+		warn(`[NexUI: Bootstrapper]: Internal issue occurred. (r)`)
 		return nil
 	end
 	return r
