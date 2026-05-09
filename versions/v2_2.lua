@@ -1116,4 +1116,4 @@ function Window:Destroy()
 end
 
 -- ───────────────────────────────────────────────────────────────────────────
-return { new = function(cfg) return Window.new(cfg) end }
+return { Name = "Nex UI" new = function(cfg) return Window.new(cfg) end }
