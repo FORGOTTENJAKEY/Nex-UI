@@ -8,9 +8,21 @@ b = {104,116,116,112,115,58,47,47,114,97,119,46,
 	117,97};lat = "2.2"
 
 return function(v)
-	local map="";for _,kv in ipairs(b) do map ..= string.char(kv) end
-	local fi=map:format(`v{tostring(v):gsub("%.", "_")}`);
-	local s,f=pcall(function()return loadstring(game:HttpGet(fi))()end);
-	if not s and v ~= lat then s,f = pcall(function()return loadstring(game:HttpGet(map:format(`v{tostring(lat):gsub("%.", "_")}`)))()end) end;
-	if s then return f end; return nil
+	v=v or lat
+	local s,r=pcall(function()
+		local map="";for _,kv in ipairs(b) do map ..= string.char(kv) end
+		local fi=map:format(`v{tostring(v):gsub("%.", "_")}`);
+		local s,f=pcall(function()return loadstring(game:HttpGet(fi))()end);
+		if not s and v ~= lat then s,f = pcall(function()return loadstring(game:HttpGet(map:format(`v{tostring(lat):gsub("%.", "_")}`)))()end) end;
+		if not s then
+			warn(`[NexUI: Bootstrapped]: Failed to fetch, please retry again..`)
+			return nil
+		end
+		if s then return f end; return nil
+	end)
+	if not s then
+		warn(`[NexUI: Bootstrapped]: Internal issue occurred. (r)`)
+		return nil
+	end
+	return r
 end
